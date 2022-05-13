@@ -31,7 +31,9 @@ Tinggal drag and drop folder nya ke program `processFolder.exe`
 
 # Bagi rekan developer
 
-Bila ingin menggunakan package ini dalam program Anda, monggo menggunakan exports di dalam package `extractpdf`. 
+[![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](https://pkg.go.dev/github.com/benedictjohannes/bca-pdfestatementindividual-extractor)
+
+Bila ingin menggunakan package ini dalam program Anda, monggo menggunakan exports di dalam package `extractpdf`.
 
 # Bagi eksekutif perbankan yang membaca
 
