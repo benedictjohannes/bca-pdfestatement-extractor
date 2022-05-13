@@ -26,7 +26,10 @@ var months = []string{
 	"DESEMBER",
 }
 
-func ProcessPdfFromPath(path string) (transactions, error) {
+// ProcessPdfFromPath reads a local eStatement PDF file
+// and returns an array of transactions resulting 
+// from parsing the eStatement PDF. 
+func ProcessPdfFromPath(path string) (Transactions, error) {
 	f, pdfR, err := pdf.Open(path)
 	defer func() {
 		_ = f.Close()
@@ -36,14 +39,21 @@ func ProcessPdfFromPath(path string) (transactions, error) {
 	}
 	return processPdf(pdfR)
 }
-func ProcessPdfFromReader(r io.Reader) (transactions, error) {
+
+// ProcessPdfFromPath accepts an io.Reader with ReadAll
+// and returns an array of transactions resulting 
+// from parsing the eStatement PDF. 
+func ProcessPdfFromReader(r io.Reader) (Transactions, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
 	return ProcessPdfFromBytes(b)
 }
-func ProcessPdfFromBytes(b []byte) (transactions, error) {
+// ProcessPdfFromPath accepts a []byte which will be read
+// and returns an array of transactions resulting 
+// from parsing the eStatement PDF. 
+func ProcessPdfFromBytes(b []byte) (Transactions, error) {
 	bytesR := bytes.NewReader(b)
 	pdfR, err := pdf.NewReader(bytesR, bytesR.Size())
 	if err != nil {
@@ -52,10 +62,13 @@ func ProcessPdfFromBytes(b []byte) (transactions, error) {
 	return processPdf(pdfR)
 }
 
-func processPdf(pdfR *pdf.Reader) (transactions, error) {
+
+// this is the internal function called by the exported
+// ProcessPdf*** functions
+func processPdf(pdfR *pdf.Reader) (Transactions, error) {
 	totalPage := pdfR.NumPage()
-	transactions := make([]*transaction, 0)
-	var currentTransaction *transaction = nil
+	transactions := make([]*Transaction, 0)
+	var currentTransaction *Transaction = nil
 	var isNew bool = false
 	year := "1900"
 	for pageIndex := 1; pageIndex <= totalPage; pageIndex++ {

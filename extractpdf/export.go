@@ -15,7 +15,14 @@ var last4DigitStrIsNumber = regexp.MustCompile("\\d\\d\\d\\d$")
 
 var excelZeroTime time.Time
 
-func (t transactions) ExportExcel() (f *excelize.File) {
+
+// ExportExcel exports the transactions into an *excelize.File
+// 
+// The resulting Excel file can be written to file, etc
+//
+// Reasonable column headers and basic formatting included
+// to ensure the file is easily readable and workable
+func (t Transactions) ExportExcel() (f *excelize.File) {
 	excelZeroTime, _ = time.Parse("2006/01/02", "1900/01/01")
 	f = excelize.NewFile()
 	index := f.NewSheet(excelSheet)
@@ -52,7 +59,7 @@ func (t transactions) ExportExcel() (f *excelize.File) {
 	}
 	return
 }
-func (t *transaction) writeExcelCell(f *excelize.File, i int) {
+func (t *Transaction) writeExcelCell(f *excelize.File, i int) {
 	rowIdxStr := strconv.FormatInt(int64(i+2), 10)
 	if !t.Date.IsZero() {
 		d := t.Date.Sub(excelZeroTime).Hours()/24 + 2
