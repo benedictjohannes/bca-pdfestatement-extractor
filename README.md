@@ -6,7 +6,7 @@ Harus rapiin dulu satu-satu, copass satu-satu?
 
 Apalagi kalau banyak transaksinya, harus diolah via spreadsheet?
 
-Program ini solusinya!
+Program ini solusinya! Unduh versi terkini di [releases](https://github.com/benedictjohannes/bca-pdfestatementindividual-extractor/releases/).
 
 ## Baca satu eStatement BCA
 
