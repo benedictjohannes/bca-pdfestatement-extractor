@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/benedictjohannes/bca-pdfestatementindividual-extractor/extractPdf"
+	"github.com/benedictjohannes/bca-pdfestatementindividual-extractor/extractpdf"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	if !strings.HasSuffix(pdfFileName, ".pdf") {
 		panic("file should has .pdf extension")
 	}
-	transactions, err := extractPdf.ProcessPdfFromPath(pdfFileName)
+	transactions, err := extractpdf.ProcessPdfFromPath(pdfFileName)
 	if err != nil {
 		panic(err)
 	}

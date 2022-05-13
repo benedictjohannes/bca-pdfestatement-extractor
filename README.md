@@ -29,6 +29,10 @@ Tenang, program ini akan mengenali format nama ini, dan satu demi satu:
 
 Tinggal drag and drop folder nya ke program `processFolder.exe`
 
+# Bagi rekan developer
+
+Bila ingin menggunakan package ini dalam program Anda, monggo menggunakan exports di dalam package `extractpdf`. 
+
 # Bagi eksekutif perbankan yang membaca
 
 1. Zaman sudah canggih

@@ -1,4 +1,4 @@
-package extractPdf
+package extractpdf
 
 import (
 	"regexp"

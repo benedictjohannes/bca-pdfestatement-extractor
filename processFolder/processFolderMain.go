@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/benedictjohannes/bca-pdfestatementindividual-extractor/extractPdf"
+	"github.com/benedictjohannes/bca-pdfestatementindividual-extractor/extractpdf"
 )
 
 const bcaRegexStr = "(\\d+)([a-zA-Z]+)(\\d+)\\.pdf"
@@ -60,7 +60,7 @@ func main() {
 						} else {
 							log.Println("Renamed:", newName)
 							iRenamed++
-							t, err := extractPdf.ProcessPdfFromPath(newPath)
+							t, err := extractpdf.ProcessPdfFromPath(newPath)
 							if err != nil {
 								log.Println("Failed to extract transactions from", fName)
 							}
@@ -95,7 +95,7 @@ func main() {
 					} else {
 						defer f.Close()
 					}
-					t, err := extractPdf.ProcessPdfFromPath(wd + "/" + fName)
+					t, err := extractpdf.ProcessPdfFromPath(wd + "/" + fName)
 					if err != nil {
 						log.Println("Failed to extract transactions from", err)
 						iFailExport++
