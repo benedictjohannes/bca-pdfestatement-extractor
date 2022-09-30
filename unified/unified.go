@@ -30,7 +30,16 @@ func main() {
 		if argsLen > 2 {
 			log.Fatalln("this program can only have folder path as first argument")
 		}
-		wd = os.Args[1]
+		arg1 := os.Args[1]
+		info, err := os.Stat(arg1)
+		if err != nil {
+			log.Fatalln("failed to stat file:", arg1)
+		}
+		if !info.IsDir() {
+			processFile(arg1)
+			return
+		}
+		wd = arg1
 	}
 	files, err := os.ReadDir(wd)
 	if err != nil {
@@ -196,4 +205,21 @@ func main() {
 		fmt.Printf("    Fail To Export   : %d\n", cCorporateFailedExport)
 	}
 	log.Printf("Files with foreign PDF names: %d\n", cCorporateFailedExport)
+}
+
+func processFile(fileName string) {
+	if !strings.HasSuffix(fileName, ".pdf") {
+		log.Fatalln("file should has .pdf extension")
+	}
+	transactions, err := extractpdf.ProcessPdfFromPath(fileName)
+	if err != nil {
+		log.Fatalln("failed to process PDF file:", err)
+	}
+	excelFile := transactions.ExportExcel()
+	excelFileName := strings.TrimSuffix(fileName, ".pdf") + ".xlsx"
+	err = excelFile.SaveAs(excelFileName)
+	if err != nil {
+		log.Fatalln("failed to write excel file", excelFileName)
+	}
+	log.Println("Successfully saved", excelFileName)
 }
