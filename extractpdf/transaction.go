@@ -28,7 +28,7 @@ func (c leftCol) Is(x float64) bool {
 	if diff < 0 {
 		diff = diff * -1
 	}
-	return diff < 1.0
+	return diff < 5.0
 }
 func (c rightCol) Is(x float64) bool {
 	return rightCol(x) > c
@@ -37,7 +37,6 @@ func (c rightCol) Is(x float64) bool {
 const dateCol leftCol = 46.04
 const balanceCol rightCol = 470.0
 const changeAmountCol rightCol = 340.0
-const dbCrCol leftCol = 447.22
 const description1Col leftCol = 92.61
 const description2Col leftCol = 196.71
 
