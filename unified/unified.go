@@ -72,11 +72,12 @@ func main() {
 					continue
 				}
 				tF := ts.Format("0601-")
+				oldPath := wd + "/" + fName
 				newName := tF + fName
 				newPath := wd + "/" + newName
-				err = os.Rename(fName, newPath)
+				err = os.Rename(oldPath, newPath)
 				if err != nil {
-					log.Println("Failed rename:", fName)
+					log.Println("Failed rename:", fName, ":", err)
 					cIndividualFailedRename++
 					continue
 				}
@@ -102,7 +103,7 @@ func main() {
 					log.Println("Failed to save excel for file", fName, "; err:", err)
 					cIndividualFailedExport++
 				} else {
-					log.Println("Succeed to save excel for file", fName, "; err:", err)
+					log.Println("Succeed to save excel for file", fName)
 					cIndividualSuccessExported++
 				}
 				continue
@@ -137,7 +138,7 @@ func main() {
 					log.Println("Failed to save excel for file", fName, "; err:", err)
 					cIndividualFailedExport++
 				} else {
-					log.Println("Succeed to save excel for file", fName, "; err:", err)
+					log.Println("Succeed to save excel for file", fName)
 					cIndividualSuccessExported++
 				}
 				continue
@@ -161,7 +162,7 @@ func main() {
 				}
 				t, err := extractpdf.ProcessPdfFromPath(wd + "/" + fName)
 				if err != nil {
-					log.Println("Failed to extract transactions from", err)
+					log.Println("Failed to extract transactions from", fName, "; err:", err)
 					cCorporateFailedExport++
 					continue
 				}
@@ -171,7 +172,7 @@ func main() {
 					log.Println("Failed to save excel file", err)
 					cCorporateFailedExport++
 				} else {
-					log.Println("Succeed to save excel for file", fName, "; err:", err)
+					log.Println("Succeed to save excel for file", fName)
 					cCorporateSuccessExported++
 				}
 				continue
