@@ -8,14 +8,14 @@ Apalagi kalau banyak transaksinya, harus diolah via spreadsheet?
 
 Program ini solusinya! Unduh versi terkini di [releases](https://github.com/benedictjohannes/bca-pdfestatement-extractor/releases/).
 
-## Baca satu eStatement BCA
+## Export Excel satu eStatement BCA
 
 Tinggal drag and drop file PDF (misal `1271228193Jan2022.pdf`) ke program `excelkanBCAeStatement.exe`.  
 Atau, filenya dipanggil sebagai argument pertama ke executable nya, `./excelkanBCAeStatement /path/to/folder`
 
 Excel nya akan langsung jadi! Menyenangkan sekali bukan?
 
-## Baca folder berisi eStatement BCA Individual
+## Folder berisi eStatement BCA Individual: Urutkan dan Export Excel
 
 Tiap eStatement BCA punya format `NomorRekeningMMMYYYY`. Contoh, untuk Januari 2022, nomor rekening 1271228193 akan punya nama file `1271228193Jan2022.pdf`.
 
@@ -31,9 +31,9 @@ Tenang, program ini akan mengenali format nama ini, dan satu demi satu:
 Tinggal drag and drop folder nya ke program `excelkanBCAeStatement.exe`.  
 Atau, foldernya dipanggil sebagai argument pertama ke executable nya, `./excelkanBCAeStatement /path/to/folder`
 
-### Untuk Corporate
+## Folder berisi eStatement BCA Corporate: Urutkan dan Export Excel
 
-Yang corporate (rekening Giro) format file nya sudah enak untuk di sort. Jadi program ini hanya akan berusaha untuk export Excel untuk tiap file (tanpa menimpa file excel yang sudah ada). 
+Yang corporate (rekening Giro) format nama file nya sudah sesuai untuk di urutkan. Jadi program ini hanya akan berusaha untuk export Excel untuk tiap file (tanpa menimpa file excel yang sudah ada). 
 
 Tinggal drag and drop folder nya ke program `excelkanBCAeStatement.exe`.  
 Atau, foldernya dipanggil sebagai argument pertama ke executable nya, `./excelkanBCAeStatement /path/to/folder`
