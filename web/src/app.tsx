@@ -202,7 +202,7 @@ const App = () => {
             <div className='link'>
                 <a
                     target='_blank'
-                    href='https://bcapdfestatementtoexcel.web.app/'
+                    href='https://github.com/benedictjohannes/bca-pdfestatement-extractor/releases/'
                 >
                     [{lText.releases}]
                 </a>
