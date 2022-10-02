@@ -20,8 +20,9 @@ body > div {
     max-width: 600px;
     margin: auto;
     padding: 1rem;
-    background-color: #dee;
+    background-color: #cdd;
     border-radius: 1rem;
+    min-height: 7rem;
 }
 
 h1,
@@ -83,7 +84,7 @@ h4 {
     }
 }
 .link {
-    margin: 2rem 0;
+    margin: 2rem 0 0;
     a {
         &:not(:first-child) {
             margin-left: 1rem;
