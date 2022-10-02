@@ -8,6 +8,7 @@ type textTypes = {
     remarks: string
     errNotPdf: string
     tryAgain: string
+    releases: string
 }
 const textId: textTypes = {
     title: 'Export Excel',
@@ -18,6 +19,7 @@ const textId: textTypes = {
         'Untuk menjamin privasi Anda, PDF eStatement Anda diproses langsung dalam halaman ini tanpa upload ke server. Data Anda tidak akan keluar dari komputer Anda untuk export Excel ini.',
     errNotPdf: 'File bukan PDF',
     tryAgain: 'Silakan Coba Lagi',
+    releases: 'Download (untuk komputer)',
 }
 const textEn: textTypes = {
     title: 'Excel Export',
@@ -28,6 +30,7 @@ const textEn: textTypes = {
         'For your privacy, your eStatement PDF is processed on this page without any uploading to server. Any of your data never leave your browser.',
     errNotPdf: "File isn't PDF",
     tryAgain: 'Try again',
+    releases: 'Download (for computer use)',
 }
 const addActive = () =>
     document.getElementById('dropper')?.classList.add('active')
@@ -199,9 +202,15 @@ const App = () => {
             <div className='link'>
                 <a
                     target='_blank'
+                    href='https://bcapdfestatementtoexcel.web.app/'
+                >
+                    [{lText.releases}]
+                </a>
+                <a
+                    target='_blank'
                     href='https://github.com/benedictjohannes/bca-pdfestatement-extractor'
                 >
-                    [Source Code]
+                    [Github Source Code]
                 </a>
                 <a
                     target='_blank'

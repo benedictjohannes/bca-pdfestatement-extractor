@@ -6,7 +6,7 @@ Harus rapiin dulu satu-satu, copass satu-satu?
 
 Apalagi kalau banyak transaksinya, harus diolah via spreadsheet?
 
-Program ini solusinya! Unduh versi terkini di [releases](https://github.com/benedictjohannes/bca-pdfestatement-extractor/releases/).
+Program ini solusinya! Unduh versi terkini di [releases](https://github.com/benedictjohannes/bca-pdfestatement-extractor/releases/). Atau, gunakan versi web di [https://bcapdfestatementtoexcel.web.app/](https://bcapdfestatementtoexcel.web.app/).
 
 ## Export Excel satu eStatement BCA
 
