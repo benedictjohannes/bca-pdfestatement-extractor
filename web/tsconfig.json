@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "module": "ES2020",
+        "lib": [
+            "DOM",
+            "ES2020",
+        ],
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
+        "skipLibCheck": true,
+        "paths": {
+            "react": [
+                "./node_modules/preact/compat/"
+            ],
+            "react-dom": [
+                "./node_modules/preact/compat/"
+            ]
+        },
+        "moduleResolution": "Node",
+    },
+    "exclude": [
+        "node_modules",
+        "src/wasm_exec.js"
+    ]
+}

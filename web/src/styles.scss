@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+body > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#root {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+    background-color: #dee;
+    border-radius: 1rem;
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-align: center;
+    line-height: 1;
+}
+p,
+h3,
+h4 {
+    margin: 0;
+}
+#dropper {
+    border-radius: 1rem;
+    background-color: #fff;
+    height: 7rem;
+    position: relative;
+    padding: 0.5rem;
+    margin: 2rem 0;
+    > div {
+        border: 0.2rem dashed #aaa;
+        border-radius: 0.75rem;
+        padding: 0.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &.active,
+    &:hover {
+        > div {
+            border-color: #6e6;
+            color: #6e6;
+        }
+    }
+    &.dragErr,
+    &.error {
+        > div {
+            border-color: #f77;
+            color: #f77;
+        }
+    }
+    input[type='file'] {
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+}
+.link {
+    margin: 2rem 0;
+    a {
+        &:not(:first-child) {
+            margin-left: 1rem;
+        }
+    }
+}

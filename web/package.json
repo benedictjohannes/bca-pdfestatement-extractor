@@ -1,0 +1,25 @@
+{
+    "type": "module",
+    "scripts": {
+        "start": "parcel src/index.html --public-url=/",
+        "clean": "rm -rf dist .parcel-cache || true",
+        "build:go:generate": "GOOS=js GOARCH=wasm go generate",
+        "build:go:build": "GOOS=js GOARCH=wasm go build -o src/exportExcelPDFeStatement.wasm",
+        "build:fe": "parcel build src/index.html --no-source-maps --public-url=/",
+        "build": "npm run build:go:generate && npm run build:go:build && npm run build:fe",
+        "cleanbuild": "npm run clean && npm run build"
+    },
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.7.0",
+        "@types/react": "^18.0.17",
+        "@types/react-dom": "^18.0.6",
+        "parcel": "^2.7.0",
+        "preact": "^10.11.0",
+        "process": "^0.11.10",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "alias": {
+        "preact/jsx-dev-runtime": "preact/jsx-runtime"
+    }
+}
