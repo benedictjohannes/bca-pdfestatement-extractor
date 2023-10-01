@@ -39,6 +39,7 @@ const balanceCol rightCol = 470.0
 const changeAmountCol rightCol = 340.0
 const description1Col leftCol = 92.61
 const description2Col leftCol = 196.71
+const summaryFirstCol leftCol = 180.18
 
 // a row with a new date signifies a new transaction
 //
@@ -49,7 +50,7 @@ const description2Col leftCol = 196.71
 // the returned isNew tells whether the returned
 // *transaction is a new transaction that should
 // be added to a transaction slice
-func IngestRow(prevT *Transaction, row *pdf.Row, year string) (isNew bool, t *Transaction) {
+func IngestRow(prevT *Transaction, row *pdf.Row, year string) (isNew bool, t *Transaction, shouldStopProcessing bool) {
 	words := make([]pdf.Text, len(row.Content))
 	for i, w := range row.Content {
 		words[i] = w
@@ -89,12 +90,17 @@ func IngestRow(prevT *Transaction, row *pdf.Row, year string) (isNew bool, t *Tr
 		words = words[:len(words)-1]
 	}
 
-	readSupplementary(t, words)
+	shouldStopProcessing = readSupplementary(t, words)
 	return
 }
 
-func readSupplementary(t *Transaction, words []pdf.Text) {
+// readSupplementary try to read words in a row that are apart of
+// date and balance information
+func readSupplementary(t *Transaction, words []pdf.Text) (stopProcessingNext bool) {
 	for i, word := range words {
+		if i==0 && word.S == "SALDO AWAL" && summaryFirstCol.Is(word.X) {
+			return true
+		}
 		if changeAmountCol.Is(word.X) {
 			amount, amountErr := strconv.ParseFloat(
 				strings.Replace(word.S, ",", "", -1),
@@ -120,4 +126,5 @@ func readSupplementary(t *Transaction, words []pdf.Text) {
 			}
 		}
 	}
+	return
 }

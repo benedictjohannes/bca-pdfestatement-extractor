@@ -27,8 +27,8 @@ var months = []string{
 }
 
 // ProcessPdfFromPath reads a local eStatement PDF file
-// and returns an array of transactions resulting 
-// from parsing the eStatement PDF. 
+// and returns an array of transactions resulting
+// from parsing the eStatement PDF.
 func ProcessPdfFromPath(path string) (Transactions, error) {
 	f, pdfR, err := pdf.Open(path)
 	defer func() {
@@ -41,8 +41,8 @@ func ProcessPdfFromPath(path string) (Transactions, error) {
 }
 
 // ProcessPdfFromPath accepts an io.Reader with ReadAll
-// and returns an array of transactions resulting 
-// from parsing the eStatement PDF. 
+// and returns an array of transactions resulting
+// from parsing the eStatement PDF.
 func ProcessPdfFromReader(r io.Reader) (Transactions, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
@@ -50,9 +50,10 @@ func ProcessPdfFromReader(r io.Reader) (Transactions, error) {
 	}
 	return ProcessPdfFromBytes(b)
 }
+
 // ProcessPdfFromPath accepts a []byte which will be read
-// and returns an array of transactions resulting 
-// from parsing the eStatement PDF. 
+// and returns an array of transactions resulting
+// from parsing the eStatement PDF.
 func ProcessPdfFromBytes(b []byte) (Transactions, error) {
 	bytesR := bytes.NewReader(b)
 	pdfR, err := pdf.NewReader(bytesR, bytesR.Size())
@@ -61,7 +62,6 @@ func ProcessPdfFromBytes(b []byte) (Transactions, error) {
 	}
 	return processPdf(pdfR)
 }
-
 
 // this is the internal function called by the exported
 // ProcessPdf*** functions
@@ -84,13 +84,18 @@ func processPdf(pdfR *pdf.Reader) (Transactions, error) {
 		}
 		sort.Sort(sortedRows)
 		aftTanggal := false
+		shouldStopProcessing := false
 		for _, row := range sortedRows {
 			if aftTanggal {
-				isNew, currentTransaction = IngestRow(currentTransaction, row, year)
+				isNew, currentTransaction, shouldStopProcessing = IngestRow(currentTransaction, row, year)
 				if isNew {
 					transactions = append(transactions, currentTransaction)
 				}
+				if shouldStopProcessing {
+					break
+				}
 			} else {
+				// here we try to ignore statement end-footer
 				m := 0
 				for wordIndex, word := range row.Content {
 					if year == "1900" {
