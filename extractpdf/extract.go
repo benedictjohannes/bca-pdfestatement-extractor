@@ -22,6 +22,8 @@ var months = []string{
 	"JUNI",
 	"JULI",
 	"AGUSTUS",
+	"SEPTEMBER",
+	"OKTOBER",
 	"NOVEMBER",
 	"DESEMBER",
 }
